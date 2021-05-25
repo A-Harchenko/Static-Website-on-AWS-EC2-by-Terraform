@@ -6,7 +6,8 @@ provider "aws" {
     region     = "us-west-2"
 }
 
-resource "aws_instance" "my_webserver" {
+`terraform
+/*resource "aws_instance" "my_webserver" {
   ami                    = "ami-03d5c68bab01f3496"
   instance_type          = "t3.micro"
   vpc_security_group_ids = [aws_security_group.my_webserver_group.id]
@@ -46,5 +47,18 @@ resource "aws_security_group" "my_webserver_group" {
   tags = {
     name  = "my_webserver_group"
     owner = "Harchenko Anastasia"
+  }
+}
+*/
+terraform`
+
+#Let's try to create just an instance
+resource "aws_instance" "webserver_test" {
+  ami                    = "ami-03d5c68bab01f3496"
+  instance_type          = "t3.micro"
+
+  tags = {
+      name  = "WebServer_test for Example"
+      owner = "AHarchenko"
   }
 }
