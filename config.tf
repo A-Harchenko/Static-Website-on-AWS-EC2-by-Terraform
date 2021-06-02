@@ -6,29 +6,21 @@ provider "aws" {
     region     = "us-west-2"
 }
 
-`terraform
-/*resource "aws_instance" "my_webserver" {
-  ami                    = "ami-03d5c68bab01f3496"
-  instance_type          = "t3.micro"
-  vpc_security_group_ids = [aws_security_group.my_webserver_group.id]
-  user_data              = file("user_data.sh")
+resource "aws_instance" "myubuntu" {
+  ami                    = "ami-03d5c68bab01f3496" 
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.my_ubuntu_group.id]
+  user_data              = file("user_data_ubuntu.sh")
 
   tags = {
-      name  = "WebServer for Task"
-      owner = "Harchenko Anastasia"
+      name  = "myubuntu"
+      owner = "AHarchenko"
   }
 }
 
-resource "aws_security_group" "my_webserver_group" {
-  name        = "my_webserver_group"
+resource "aws_security_group" "my_ubuntu_group" {
+  name        = "my_ubuntu_group"
   description = "My first SecurityGroup"
-
-  ingress {
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
-  }
 
     ingress {
     from_port        = 80
@@ -45,20 +37,7 @@ resource "aws_security_group" "my_webserver_group" {
   }
 
   tags = {
-    name  = "my_webserver_group"
-    owner = "Harchenko Anastasia"
-  }
-}
-*/
-terraform`
-
-#Let's try to create just an instance
-resource "aws_instance" "webserver_test" {
-  ami                    = "ami-03d5c68bab01f3496"
-  instance_type          = "t3.micro"
-
-  tags = {
-      name  = "WebServer_test for Example"
-      owner = "AHarchenko"
+    name  = "my_ubuntu_group"
+    owner = "AHarchenko"
   }
 }
